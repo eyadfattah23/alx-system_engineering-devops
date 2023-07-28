@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# ls using for loop to list all the files
+
+for i in *
+do
+	if [[ $i == *-* ]]
+	then
+		name=${i#*-}
+		echo "$name"
+	fi
+done
