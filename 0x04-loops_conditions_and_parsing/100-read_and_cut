@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# script that displays the content of the file /etc/passwd
+# script should only display: username ,user id ,Home directory path for the user
+
+while IFS=: read -r -a array;
+do
+  echo "${array[0]}:${array[1]}:${array[6]}"
+done < /etc/passwd
+
