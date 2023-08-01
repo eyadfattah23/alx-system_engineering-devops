@@ -36,3 +36,5 @@ links:
 https://rubular.com/
 
 https://www.w3schools.com/jsref/jsref_obj_regexp.asp
+
+https://blog.codinghorror.com/regular-expressions-now-you-have-two-problems/
