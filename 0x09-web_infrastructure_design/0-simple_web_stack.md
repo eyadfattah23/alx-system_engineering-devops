@@ -41,7 +41,7 @@ the design: https://imgur.com/a/6i8LG94
 
 > **domain name and it's role**: Domain names serve as human-readable addresses for websites, making it easier for users to access online resources without having to remember numeric IP addresses.
 
-> **type of DNS record www is in www.foobar.com**: it's CNAME (canonical name) record which translates the www.foobar.com to foobar.com
+> **type of DNS record www is in www.foobar.com**: it's CNAME (canonical name) record which translates the www.foobar.com to foobar.com. it can be an A record because it translates into an ip address it depends on how the system is built
 
 > **the role of the web server**: Handle mainly the http requests and sees if it has the the requested data on the it's static DB and sends requests to the application server to get the data requested if not available in the static DB.
 
