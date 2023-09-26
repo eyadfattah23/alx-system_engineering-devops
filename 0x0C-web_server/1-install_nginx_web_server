@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# script that configures a new Ubuntu machine to respect below requirements (this script will be run on the server itself)
+# Nginx should be listening on port 80
+# When querying Nginx at its root / with a GET request
+# (requesting a page) using curl,
+# it must return a page that contains the string Hello World!
+
+
+
+apt-get -y install nginx;
+
+sudo mkdir -p /var/www/example.com/html;
+sudo mkdir -p /var/www/test.com/html;
+
+sudo chmod -R 755 /var/www;
