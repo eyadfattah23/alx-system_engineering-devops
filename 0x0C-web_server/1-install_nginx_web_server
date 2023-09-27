@@ -6,10 +6,8 @@
 # it must return a page that contains the string Hello World!
 
 
+sudo su;
+sudo apt-get -y install nginx;
 
-apt-get -y install nginx;
 
-sudo mkdir -p /var/www/example.com/html;
-sudo mkdir -p /var/www/test.com/html;
-
-sudo chmod -R 755 /var/www;
+sudo echo "Hello World!" > /var/www/html/index.nginx-debian.html;
