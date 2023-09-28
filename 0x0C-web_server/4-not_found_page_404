@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 # Script to configure your Nginx server to redirect /redirect_me to another page.
 
-# Use sudo for specific commands instead.
-sudo su;
 
 # Update package lists and install Nginx.
 sudo apt-get -y update;
@@ -11,7 +9,7 @@ sudo apt-get -y install nginx;
 sudo service nginx start;
 # Create a simple index page.
 echo "Hello World!" > /var/www/html/index.nginx-debian.html;
-echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html
 
 # Start the Nginx service.
 sudo ufw allow 'Nginx HTTP';
@@ -26,11 +24,11 @@ printf %s "server {
         return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4/;
     }
 
-    error_page 404 /404.html;
-    location = /404.html {
+    error_page 404 /custom_404.html;
+    location = /custom_404.html {
         root /var/www/html;
         internal;
     }
 }" > /etc/nginx/sites-available/default;
 
-service nginx restart;
+sudo service nginx restart;
