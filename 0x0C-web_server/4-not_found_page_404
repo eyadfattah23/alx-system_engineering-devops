@@ -10,7 +10,7 @@ sudo apt-get -y install nginx;
 
 # Create a simple index page.
 echo "Hello World!" > /var/www/html/index.nginx-debian.html;
-echo "Ceci n'est pas une page" > /var/www/html/custom_404.html
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html
 
 # Start the Nginx service.
 
@@ -30,4 +30,4 @@ printf %s "server {
     }
 }" > /etc/nginx/sites-available/default;
 
-service nginx restart
+service nginx restart;
