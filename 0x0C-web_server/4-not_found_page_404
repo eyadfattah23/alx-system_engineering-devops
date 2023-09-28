@@ -8,8 +8,8 @@ sudo apt-get -y install nginx;
 
 sudo service nginx start;
 # Create a simple index page.
-echo "Hello World!" > /var/www/html/index.nginx-debian.html;
-echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html
+sudo echo "Hello World!" > /var/www/html/index.nginx-debian.html;
+sudo echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html
 
 # Start the Nginx service.
 sudo ufw allow 'Nginx HTTP';
