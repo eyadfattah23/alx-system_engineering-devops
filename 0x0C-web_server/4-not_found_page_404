@@ -14,7 +14,8 @@ echo "Hello World!" > /var/www/html/index.nginx-debian.html;
 # Start the Nginx service.
 sudo ufw allow 'Nginx HTTP';
 sudo sed -i "24i\    location /redirect_me {\n        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n    }" /etc/nginx/sites-available/default;
-sudo sed -i "28i\    location /xyz {\n        return 404 "Ceci n\'est pas une page";\n    }" /etc/nginx/sites-available/default;
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html
+sudo sed -i "28i\	 error_page 404 /custom_404.html;\n        location = /custom_404.html {\n                root /usr/share/nginx/html;\n                internal;\n        }" /etc/nginx/sites-available/default;
 
 sudo service nginx start;
 sudo nginx -s reload;
