@@ -13,8 +13,8 @@ echo "Hello World!" > /var/www/html/index.nginx-debian.html;
 
 # Start the Nginx service.
 sudo service nginx start;
-
+sudo ufw allow 'Nginx HTTP';
 
 # Create a temporary file with the changes.
-sudo sed -i '24i\    location /redirect_me {\n        return 301 http://www.youtube.com/watch?v=QH2-TGUlwu4;\n    }' /etc/nginx/sites-available/default;
+sudo sed -i '24i\    location /redirect_me {\n        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n    }' /etc/nginx/sites-available/default;
 sudo nginx -s reload;
