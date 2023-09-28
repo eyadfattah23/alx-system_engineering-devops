@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 # Script to configure your Nginx server to redirect /redirect_me to another page.
 
-# Elevate privileges for the entire script (not recommended, but if needed).
 # Use sudo for specific commands instead.
-# sudo su;
+sudo su;
 
 # Update package lists and install Nginx.
 sudo apt-get -y update;
@@ -15,19 +14,7 @@ echo "Hello World!" > /var/www/html/index.nginx-debian.html;
 # Start the Nginx service.
 sudo service nginx start;
 
-# Define the new Nginx configuration in a variable.
-new_string="location /redirect_me {
-    return 301 http://www.youtube.com/watch?v=QH2-TGUlwu4;
-}";
-
-# Use a temporary file for sed, as it's a best practice.
-# Also, add quotes around the old string.
-old_string="# pass PHP scripts to FastCGI server";
 
 # Create a temporary file with the changes.
-sed "s|$old_string|$new_string|" /etc/nginx/sites-available/default > /tmp/nginx_default_tmp;
-
-# Overwrite the original file with the temporary file.
-sudo mv /tmp/nginx_default_tmp /etc/nginx/sites-available/default;
-
+sudo sed -i '24i\    location /redirect_me {\n        return 301 http://www.youtube.com/watch?v=QH2-TGUlwu4;\n    }' /etc/nginx/sites-available/default;
 sudo nginx -s reload;
