@@ -30,4 +30,4 @@ sed "s|$old_string|$new_string|" /etc/nginx/sites-available/default > /tmp/nginx
 # Overwrite the original file with the temporary file.
 sudo mv /tmp/nginx_default_tmp /etc/nginx/sites-available/default
 
-sudo nginx -s reload
+sudo nginx -s reload;
