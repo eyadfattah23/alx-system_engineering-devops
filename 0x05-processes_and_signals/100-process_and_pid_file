@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# combine all prev tasks
+cat "$($$)" > /var/run/myscript.pid
+
+handle_sigterm() {
+    echo "I hate the kill command"
+	rm /var/run/myscript.pid
+}
+handle_signt() {
+    echo "Y U no love me?!"
+}
+trap handle_sigterm SIGTERM
+trap handle_sigterm SIGQUIT
+trap handle_signt SIGINT
+
+while true; do
+	echo "To infinity and beyond"
+done;
