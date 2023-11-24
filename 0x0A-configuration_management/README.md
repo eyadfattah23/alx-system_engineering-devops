@@ -18,6 +18,7 @@ $ apt-get install -y puppet
 ## doc:
 
 https://www.puppet.com/docs/puppet/5.5/types/file.html
+https://www.puppet.com/docs/puppet/5.5/types/package.html
 
 ## understand the process:
 
