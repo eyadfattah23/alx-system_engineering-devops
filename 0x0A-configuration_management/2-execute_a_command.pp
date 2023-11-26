@@ -1,7 +1,7 @@
 # script to kill a process named kill me now
 
 exec {'kill_a_process':
-  command => 'pkill -f pkill',
+  command => 'pkill -f killmenow',
   path    => ['/usr/bin', '/bin'],
   onlyif  => 'pgrep -f killmenow', # Check if the process is running
 }
