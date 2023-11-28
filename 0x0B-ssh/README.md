@@ -6,6 +6,8 @@
 
 https://www.youtube.com/watch?v=hQWRp-FdTpc&t=1108s
 
+https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys#basic-connection-instructions
+
 ## to add an SSH public key to connect to a remote server:
 
 > 1-> connect to the server using ssh command => ssh username@ip
