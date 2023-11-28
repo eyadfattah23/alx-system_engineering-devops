@@ -11,3 +11,7 @@ https://www.youtube.com/watch?v=hQWRp-FdTpc&t=1108s
 > 1-> connect to the server using ssh command => ssh username@ip
 
 > 2-> add the public key to **_~/.ssh/authorized_keys_** file using vi
+
+### new puppet command:
+
+https://forge.puppet.com/modules/puppetlabs/stdlib/4.9.1/types
