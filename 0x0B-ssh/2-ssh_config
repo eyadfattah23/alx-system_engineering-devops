@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+Host *
+	HostName 35.175.65.20
+	IdentityFile ~/.ssh/school
+	PasswordAuthentication no
+	SendEnv LANG LC_*
+    HashKnownHosts yes
+    GSSAPIAuthentication yes
