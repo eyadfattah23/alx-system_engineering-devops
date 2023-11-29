@@ -6,6 +6,8 @@
 
 [Method and Description](https://www.tutorialspoint.com/http/http_methods.htm)
 
+[The NGINX Crash Course](https://www.youtube.com/watch?v=7VAI73roXaY&t=482s)
+
 > ---> summary:
 > S.N. Method and Description
 
@@ -170,3 +172,40 @@ http {
   }
 }
 ```
+
+---
+
+To configure your DNS records with an A (Address) entry to point your root domain to the IP address of your web server (web-01), you'll need to do the following:
+
+    Access Your DNS Provider:
+    Log in to the website of your DNS hosting provider. This is typically the service where you purchased your domain.
+
+    Locate DNS Management or DNS Settings:
+    Look for a section called "DNS Management," "DNS Settings," or something similar. This is where you can configure your domain's DNS records.
+
+    Find the A Record Section:
+    Locate the section for A (Address) records. This is where you can map your domain to an IP address.
+
+    Add or Edit the A Record:
+
+        If there is an existing A record for your domain, edit it to set the IP address to your web server (web-01).
+
+        If there isn't an A record, add a new one. The A record should look something like this:
+
+        Type: A
+        Name: @ (represents the root domain)
+        Value: IP Address of web-01
+
+
+    If your DNS provider requires a fully qualified domain name (FQDN) in the "Name" field, you can use your root domain (e.g., example.com) instead of @.
+
+    Save Changes:
+    Save your changes. DNS changes may take some time to propagate across the internet, so it might not take effect immediately.
+
+Here's a simple example:
+
+    Type: A
+    Name: @ (or your root domain if required)
+    Value: IP Address of web-01
+
+Remember that DNS changes can take some time to propagate, and during this period, users might still see the old information cached by their ISPs or browsers.
