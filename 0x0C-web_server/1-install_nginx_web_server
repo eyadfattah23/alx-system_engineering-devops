@@ -5,9 +5,9 @@
 # (requesting a page) using curl,
 # it must return a page that contains the string Hello World!
 
-sudo apt-get -y update;
-sudo apt-get -y install nginx;
+sudo apt-get -y update
+sudo apt-get -y install nginx
 
 
-echo "Hello World!" > /var/www/html/index.html;
-service nginx restart;
+echo "Hello World!" > /var/www/html/index.html
+service nginx restart
