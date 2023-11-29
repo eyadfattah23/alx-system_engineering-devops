@@ -12,7 +12,7 @@ sudo ufw allow 'Nginx HTTP';
 sudo service nginx start;
 
 
-str = "##
+str="##
 # You should look at the following URL's in order to grasp a solid understanding
 # of Nginx configuration files in order to fully unleash the power of Nginx.
 # https://www.nginx.com/resources/wiki/start/
@@ -62,7 +62,7 @@ server {
         location / {
                 # First attempt to serve request as file, then
                 # as directory, then fall back to displaying a 404.
-                try_files $uri $uri/ =404;
+                try_files \$uri \$uri/ =404;
         }
         location /redirect_me {
                 return 301 https://youtu.be/DdWxCVYAOCk?si=atOWK-lu9lCY5E0s
@@ -89,6 +89,6 @@ server {
 # updated by the nginx packaging team.
 #"
 
-echo $str > /etc/nginx/sites-available/default;
+echo "$str" > /etc/nginx/sites-available/default;
 
 sudo nginx -s reload;
