@@ -14,7 +14,7 @@ file {'index':
 
 
 file_line { 'redirection 301':
-  ensure => present,
+  ensure => 'present',
   path   => '/etc/nginx/sites-available/default',
   line   => 'rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4/ permanent;',
   after  => 'index  index.html index.htm;',
