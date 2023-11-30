@@ -59,14 +59,16 @@ server {
 
         server_name _;
 
+        location /redirect_me {
+                return 301 https://youtu.be/DdWxCVYAOCk?si=atOWK-lu9lCY5E0s;
+        }
+		
         location / {
                 # First attempt to serve request as file, then
                 # as directory, then fall back to displaying a 404.
                 try_files \$uri \$uri/ =404;
         }
-        location /redirect_me {
-                return 301 https://youtu.be/DdWxCVYAOCk?si=atOWK-lu9lCY5E0s;
-        }
+		
 
 
         # pass PHP scripts to FastCGI server
@@ -89,6 +91,6 @@ server {
 # updated by the nginx packaging team.
 #"
 
-echo "$str" > /etc/nginx/sites-available/default;
+echo $str > /etc/nginx/sites-available/default;
 
 sudo nginx -s reload;
