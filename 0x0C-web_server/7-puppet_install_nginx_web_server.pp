@@ -1,15 +1,10 @@
 # puppet: do all previous tasks with puppet
 
-  package { 'nginx':
-    ensure => installed,
-  }
+package { 'nginx':
+  ensure => installed,
+}
 
-  service { 'nginx':
-    ensure     => running,
-    enable     => true,
-    hasstatus  => true,
-    hasrestart => true,
-  }
+
 
 file {'index':
   ensure  => 'present',
@@ -19,11 +14,14 @@ file {'index':
 
 
 file_line { 'redirection 301':
-  ensure  => present,
-  path    => '/etc/nginx/sites-available/default',
-  line    => 'index  index.html index.htm;',
-  after   => 'index  index.html index.htm;',
-  content =>'    location /redirect_me {
-        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4/;
-    }',
+  ensure => present,
+  path   => '/etc/nginx/sites-available/default',
+  line   => 'rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4/ permanent;',
+  after  => 'index  index.html index.htm;',
 }
+
+service { 'nginx':
+  ensure  => running,
+  enable  => true,
+  require => Package['nginx'],
+  }
