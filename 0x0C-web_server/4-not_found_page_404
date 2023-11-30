@@ -24,10 +24,10 @@ sudo ufw allow 'Nginx HTTP'
 
 sudo sed -i "24i\    location /redirect_me {\n        return 301 https://youtu.be/DdWxCVYAOCk?si=yydqdPnvL3iMMdh3;\n    }" /etc/nginx/sites-available/default
 
-err_str="error_page 404 /custom_404.html {
-location = /custom_404.html {
-root /usr/share/nginx/html;
-internal; 
+err_str="error_page 404 /custom_404.html;
+	location = /custom_404.html {
+		root /usr/share/nginx/html;	
+		internal; 
       }"
 
 
