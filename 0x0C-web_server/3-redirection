@@ -9,20 +9,19 @@ sudo apt-get -y install nginx;
 echo "Hello World!" > /var/www/html/index.html;
 
 sudo ufw allow 'Nginx HTTP';
+
+
+#string_to_replace="        #location ~ \.php$ {
+#        #       include snippets/fastcgi-php.conf;
+#        #
+#        #       # With php-fpm (or other unix sockets):
+#        #       fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;"
+#
+#new_string="        location /redirect_me {
+#                return 301 https://youtu.be/DdWxCVYAOCk?si=atOWK-lu9lCY5E0s;
+#        }
+#"
+
+sudo sed -i "24i\    location /redirect_me {\n        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n    }" /etc/nginx/sites-available/default;
 sudo service nginx start;
-
-
-string_to_replace="        #location ~ \.php$ {
-        #       include snippets/fastcgi-php.conf;
-        #
-        #       # With php-fpm (or other unix sockets):
-        #       fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;"
-
-new_string="        location /redirect_me {
-                return 301 https://youtu.be/DdWxCVYAOCk?si=atOWK-lu9lCY5E0s;
-        }
-"
-
-sed -i "s/$string_to_replace/$new_string/" /etc/nginx/sites-available/default
-
 sudo nginx -s reload;
