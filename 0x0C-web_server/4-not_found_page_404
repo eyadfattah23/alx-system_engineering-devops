@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # script to Configure Nginx server so that /redirect_me is redirecting to another page.
 # Use sudo for specific commands instead.
-
 sudo apt-get -y update
 sudo apt-get -y install nginx
 
@@ -9,7 +8,7 @@ sudo service nginx start
 
 
 echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
-sudo echo "Ceci n'est pas une page" > /var/www/html/custom_404.html
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html > /dev/null
 
 
 sudo ufw allow 'Nginx HTTP'
@@ -27,7 +26,7 @@ sudo ufw allow 'Nginx HTTP'
 #"
 
 
-printf %s "server {
+echo "server {
     listen 80;
     listen [::]:80 default_server;
     root   /var/www/html;
@@ -41,6 +40,6 @@ printf %s "server {
         root /var/www/html;
         internal;
     }
-}" > /etc/nginx/sites-available/default;
+}" | sudo tee /etc/nginx/sites-available/default > /dev/null;
 
 sudo service nginx restart;
