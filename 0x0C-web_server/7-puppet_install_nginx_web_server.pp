@@ -22,6 +22,5 @@ file_line { 'redirection 301':
 
 service { 'nginx':
   ensure  => running,
-  enable  => true,
   require => Package['nginx'],
   }
