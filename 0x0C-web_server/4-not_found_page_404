@@ -9,7 +9,8 @@ sudo service nginx start
 
 
 echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
-echo "Ceci n'est pas une page!" | sudo tee /var/www/html/custom_404.html > /dev/null
+sudo echo "Ceci n'est pas une page" > /var/www/html/custom_404.html
+
 
 sudo ufw allow 'Nginx HTTP'
 
@@ -41,6 +42,5 @@ printf %s "server {
         internal;
     }
 }" > /etc/nginx/sites-available/default;
-sudo nginx -s reload
 
 sudo service nginx restart;
