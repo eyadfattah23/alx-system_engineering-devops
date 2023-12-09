@@ -36,7 +36,7 @@ echo "server {
     server_name localhost;
 
 
-        add_header X-Served-By $hostname;
+        add_header X-Served-By $HOSTNAME;
     location / {
             # First attempt to serve request as file, then
             # as directory, then fall back to displaying a 404.
