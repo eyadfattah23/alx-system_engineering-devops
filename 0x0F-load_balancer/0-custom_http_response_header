@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+#!/usr/bin/env bash
+# script to Configure Nginx server so that /redirect_me is redirecting to another page.
+# Use sudo for specific commands instead.
+sudo apt-get -y update
+sudo apt-get -y install nginx
+
+sudo service nginx start
+
+
+echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html > /dev/null
+
+
+sudo ufw allow 'Nginx HTTP'
+
+
+#string_to_replace="        #location ~ \.php$ {
+#        #       include snippets/fastcgi-php.conf;
+#        #
+#        #       # With php-fpm (or other unix sockets):
+#        #       fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;"
+#
+#new_string="        location /redirect_me {
+#                return 301 https://youtu.be/DdWxCVYAOCk?si=atOWK-lu9lCY5E0s;
+#        }
+#"
+
+
+echo "server {
+    listen 80;
+    listen [::]:80 default_server;
+    root   /var/www/html;
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name _;
+
+	add_header X-Served-By $hostname;
+
+	location / {
+            # First attempt to serve request as file, then
+            # as directory, then fall back to displaying a 404.
+
+            try_files $uri $uri/ =404;
+
+	        # proxy_pass http://localhost:8080;
+        	# proxy_http_version 1.1;
+	        # proxy_set_header Upgrade $http_upgrade;
+        	# proxy_set_header Connection 'upgrade';
+	        # proxy_set_header Host $host;
+        	# proxy_cache_bypass $http_upgrade;
+        }
+
+
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4/;
+    }
+
+    error_page 404 /custom_404.html;
+    location = /custom_404.html {
+        root /var/www/html;
+        internal;
+    }
+}" | sudo tee /etc/nginx/sites-available/default > /dev/null;
+
+sudo service nginx restart;
