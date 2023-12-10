@@ -19,4 +19,6 @@ For this project, we will need to write Bash scripts to automate our work. All s
 
 - https://haproxy.debian.net/#distribution=Ubuntu&release=jammy&version=2.8
 
+- https://www.puppet.com/docs/puppet/7/lang_facts_builtin_variables.html
+
 #### [ How do I assign a static hostname to an Amazon EC2 instance that runs Ubuntu Linux?](https://repost.aws/knowledge-center/linux-static-hostname)

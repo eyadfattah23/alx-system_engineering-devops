@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# what you did for task #0, make your fix short and sweet.
+sed -i '$d' /etc/nginx/sites-enabled/default
+sudo service nginx restart
+sudo pkill nginx
