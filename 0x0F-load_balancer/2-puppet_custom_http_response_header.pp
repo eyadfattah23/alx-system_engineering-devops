@@ -12,6 +12,10 @@ file {'index':
   content => 'Hello World!',
 }
 
+file {'/var/www/html/custom_404.html':
+  ensure  => 'present',
+  content => "Ceci n'est pas une page",
+}
 
 file_line { 'redirection 301':
   ensure => 'present',
@@ -19,17 +23,12 @@ file_line { 'redirection 301':
   after  => 'listen 80 default_server;',
   line   => 'rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4/ permanent;',
 }
-file_line { 'define server name':
-  ensure => 'present',
-  path   => '/etc/nginx/sites-available/default',
-  after  => 'index index.html index.htm index.nginx-debian.html;',
-  line   => 'server_name localhost;',
-}
 file_line { 'add header':
   ensure => 'present',
   path   => '/etc/nginx/sites-available/default',
   after  => 'listen 80 default_server;',
-  line   => 'add_header X-Served-By $HOSTNAME;',
+  line   => 'add_header X-Served-By $hostname;',
+  require => Package['nginx'],
 }
 
 service { 'nginx':
