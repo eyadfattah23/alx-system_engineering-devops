@@ -18,3 +18,5 @@ For this project, we will need to write Bash scripts to automate our work. All s
 - https://www.techopedia.com/definition/27178/http-header
 
 - https://haproxy.debian.net/#distribution=Ubuntu&release=jammy&version=2.8
+
+#### [ How do I assign a static hostname to an Amazon EC2 instance that runs Ubuntu Linux?](https://repost.aws/knowledge-center/linux-static-hostname)
