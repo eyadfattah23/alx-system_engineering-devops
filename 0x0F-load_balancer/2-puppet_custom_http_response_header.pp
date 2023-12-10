@@ -1,37 +1,26 @@
 # puppet: do task 0 with puppet
 
+exec { 'apt-update':
+  command => '/usr/bin/apt update',
+}
+
+# Install Nginx package
 package { 'nginx':
-  ensure => installed,
+    ensure  => present,
+    require => Exec['apt-update'],
 }
 
-
-
-file {'index':
-  ensure  => 'present',
-  path    => '/var/www/html/index.html',
-  content => 'Hello World!',
+# Add custom HTTP header directive to Nginx configuration
+file_line {'Adding_Header':
+    ensure  => 'present',
+    path    => '/etc/nginx/sites-available/default',
+    after   => 'listen 80 default_server;',
+    line    => 'add_header X-Served-By $hostname;',
+    require => Package['nginx'],
 }
 
-file {'/var/www/html/custom_404.html':
-  ensure  => 'present',
-  content => "Ceci n'est pas une page",
-}
-
-file_line { 'redirection 301':
-  ensure => 'present',
-  path   => '/etc/nginx/sites-available/default',
-  after  => 'listen 80 default_server;',
-  line   => 'rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4/ permanent;',
-}
-file_line { 'add header':
-  ensure => 'present',
-  path   => '/etc/nginx/sites-available/default',
-  after  => 'listen 80 default_server;',
-  line   => 'add_header X-Served-By $HOSTNAME;',
-  require => Package['nginx'],
-}
-
+# Ensure Nginx service is running
 service { 'nginx':
-  ensure  => running,
-  require => Package['nginx'],
+    ensure  => running,
+    require => Package['nginx'],
 }
