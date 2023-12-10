@@ -4,32 +4,39 @@ package { 'nginx':
   ensure => installed,
 }
 
-
-
-file {'index':
+file { '/var/www/html/index.html':
   ensure  => 'present',
-  path    => '/var/www/html/index.html',
   content => 'Hello World!',
 }
 
+file { '/etc/nginx/sites-available/default':
+  ensure  => 'present',
+  content => "
+    server {
+        listen 80;
+        listen [::]:80 default_server;
+        root   /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
 
-file_line { 'redirection 301':
-  ensure => 'present',
-  path   => '/etc/nginx/sites-available/default',
-  after  => 'listen 80 default_server;',
-  line   => 'rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4/ permanent;',
-}
-file_line { 'define server name':
-  ensure => 'present',
-  path   => '/etc/nginx/sites-available/default',
-  after  => 'index index.html index.htm index.nginx-debian.html;',
-  line   => 'server_name localhost;',
-}
-file_line { 'add header':
-  ensure => 'present',
-  path   => '/etc/nginx/sites-available/default',
-  after  => 'index index.html index.htm index.nginx-debian.html;',
-  line   => 'add_header X-Served-By $HOSTNAME;',
+        server_name localhost;
+
+        add_header X-Served-By ${hostname};
+
+        location / {
+            try_files ${uri} ${uri}/ =404;
+        }
+
+        location /redirect_me {
+            return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4/;
+        }
+
+        error_page 404 /custom_404.html;
+        location = /custom_404.html {
+            root /var/www/html;
+            internal;
+        }
+    }
+  ",
 }
 
 service { 'nginx':
