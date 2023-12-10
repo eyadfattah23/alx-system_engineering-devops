@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# script that configures a server
+sed -i '$d' /etc/nginx/sites-enabled/default
