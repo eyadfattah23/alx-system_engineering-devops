@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# script that will display information about subdomains in ubuntu 16.04
+
+
+function func () {
+	if [ $# -eq 2 ]
+	then
+		DOMAIN="$1"
+		SUB_DOMAIN="$2"
+		dig "$SUB_DOMAIN.$DOMAIN" +noall +answer | awk -v sub_dom="$SUB_DOMAIN" '{ print "The subdomain "sub_dom" is a "$4" record and points to " $NF; }'
+	else
+		DOMAIN="$1"
+		SUB_DOMAIN1="www"
+		SUB_DOMAIN2="lb-01"
+		SUB_DOMAIN3="web-01"
+		SUB_DOMAIN4="web-02"
+
+		dig "$SUB_DOMAIN1.$DOMAIN" +noall +answer | awk -v sub_dom="$SUB_DOMAIN1" '{ print "The subdomain "sub_dom" is a "$4" record and points to " $NF; }'
+		dig "$SUB_DOMAIN2.$DOMAIN" +noall +answer | awk -v sub_dom="$SUB_DOMAIN2" '{ print "The subdomain "sub_dom" is a "$4" record and points to " $NF; }'
+		dig "$SUB_DOMAIN3.$DOMAIN" +noall +answer | awk -v sub_dom="$SUB_DOMAIN3" '{ print "The subdomain "sub_dom" is a "$4" record and points to " $NF; }'
+		dig "$SUB_DOMAIN4.$DOMAIN" +noall +answer | awk -v sub_dom="$SUB_DOMAIN4" '{ print "The subdomain "sub_dom" is a "$4" record and points to " $NF; }'
+
+	fi
+}
+if [ $# -eq 2 ]
+then
+	func "$1" "$2"
+else
+	func "$1"
+fi
