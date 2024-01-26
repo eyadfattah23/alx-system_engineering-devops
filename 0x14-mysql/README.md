@@ -44,3 +44,9 @@ mysql-server:
 5. Now install mysql 5.7
 
 `sudo apt install -f mysql-client=5.7* mysql-community-server=5.7* mysql-server=5.7\*`
+
+---
+
+## Resources:
+
+**https://www.digitalocean.com/community/tutorials/how-to-set-up-replication-in-mysql#step-1-adjusting-your-source-server-s-firewall**
