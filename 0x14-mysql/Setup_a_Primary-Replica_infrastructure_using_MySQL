@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+sudo ufw allow from 100.25.162.125 to any port 3306
+
+sudo sed -i 's/bind-address\s*=\s*127.0.0.1/# bind-address = 100.25.22.31/' /etc/mysql/mysql.conf.d/mysqld.cnf
+
+sudo sed -i '/log_bin = \/var\/log\/mysql\/mysql-bin.log/a\
+server-id = 1\
+log_bin = /var/log/mysql/mysql-bin.log' /etc/mysql/mysql.conf.d/mysqld.cnf
+
+sudo sed -i '$a\binlog_do_db = tyrell_corp' /etc/mysql/mysql.conf.d/mysqld.cnf
+
+
+sudo systemctl restart mysql
