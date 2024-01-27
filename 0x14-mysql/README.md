@@ -50,3 +50,20 @@ mysql-server:
 ## Resources:
 
 **https://www.digitalocean.com/community/tutorials/how-to-set-up-replication-in-mysql#step-1-adjusting-your-source-server-s-firewall**
+
+### new commands used in web01
+
+ssh-keygen -t rsa -b 4096
+ssh-copy-id ubuntu@100.25.162.125
+sudo mysqldump -u root tyrell_corp > tyrell_corp.sql
+scp tyrell_corp.sql ubuntu@100.25.162.125:/tmp/
+sudo mysql tyrell_corp < /tmp/tyrell_corp.sql
+
+### new mysql commands used in web02
+
+CHANGE MASTER TO
+MASTER_HOST='100.25.22.31',
+MASTER_USER='replica_user',
+MASTER_PASSWORD='password',
+MASTER_LOG_FILE='mysql-bin.000329',
+MASTER_LOG_POS=154;
