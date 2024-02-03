@@ -26,8 +26,7 @@ if __name__ == "__main__":
                 done_tasks += 1
                 dtasks_titles.append(task.get('title'))
 
-    print("Employee {} \
-    is done with tasks({}/{}):"
+    print("Employee {} is done with tasks({}/{}):"
           .format(user_name,
                   done_tasks,
                   total_tasks))
