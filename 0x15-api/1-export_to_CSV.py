@@ -27,6 +27,7 @@ if __name__ == "__main__":
         writer = csv.writer(file, quotechar='"', quoting=csv.QUOTE_MINIMAL)
         for task in tasks:
             if task.get('userId') == userId:
-                # Format: "USER_ID","USERNAME","TASK_COMPLETED_STATUS","TASK_TITLE"
-                writer.writerow([f"{userId}", f"{user_name}", f"{str(task.get('completed'))}",
+                # Form:"USER_ID","USERNAME","TASK_COMPLETED_STATUS","TASK_TITLE"
+                writer.writerow([f"{userId}", f"{user_name}",
+                                 f"{str(task.get('completed'))}",
                                  f"{task.get('title')}"])
