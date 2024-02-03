@@ -14,7 +14,7 @@ if __name__ == "__main__":
     userId = int(argv[1])
     user = requests.get(url + f"users/{userId}").json()
 
-    user_name = user.get('name')
+    user_name = user.get('username')
 
     file_name = f"{userId}.csv"
     total_tasks = 0
