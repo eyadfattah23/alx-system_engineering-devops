@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 '''script that uses REST API,
 for a given employee ID,
-to return information about his/her TODO list progress.'''
+to return information about his/her todo list progress.'''
 
 
 import requests
