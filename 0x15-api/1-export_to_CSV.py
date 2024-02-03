@@ -24,7 +24,7 @@ if __name__ == "__main__":
     tasks = requests.get(url + "todos/").json()
 
     with open(file_name, 'w', newline='') as file:
-        writer = csv.writer(file, quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        writer = csv.writer(file, quoting=csv.QUOTE_NONNUMERIC)
         for task in tasks:
             if task.get('userId') == userId:
                 # Form:"USER_ID","USERNAME","TASK_COMPLETED_STATUS","TASK_TITLE"
