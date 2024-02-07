@@ -4,9 +4,9 @@ for a given employee ID,
 to return information about his/her todo list progress.
 and export to a csv file USER_ID.json'''
 
+import json
 import requests
 from sys import argv
-import json
 if __name__ == "__main__":
     url = 'https://jsonplaceholder.typicode.com/'
 
