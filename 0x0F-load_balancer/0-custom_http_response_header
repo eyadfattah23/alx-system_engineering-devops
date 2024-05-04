@@ -1,20 +1,22 @@
 #!/usr/bin/env bash
 # script to Configure Nginx server so that /redirect_me is redirecting to another page.
-# Use sudo for specific commands instead.
 sudo apt-get -y update
 sudo apt-get -y install nginx
 
-sudo service nginx start
 
-
+# home page (200 code) says hello world
 echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
+
+# the custom page for the server 
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html > /dev/null
 
-
+# configuring firewall 
 sudo ufw allow 'Nginx HTTP'
 
+# configure ngnix to make 404 code returns a custom page
 sudo sed -i '58i\\terror_page 404 /custom_404.html;' /etc/nginx/sites-available/default
 
+# add a custom header
 sudo sed -i '/.*server_name _/a \\tadd_header X-Served-By \$hostname;' /etc/nginx/sites-available/default
 
 
