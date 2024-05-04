@@ -26,7 +26,7 @@ sudo ufw allow 'Nginx HTTP'
 #"
 
 
-sudo sed '58i\\terror_page 404 /custom_404.html;' /etc/nginx/sites-available/default
+sudo sed -i '58i\\terror_page 404 /custom_404.html;' /etc/nginx/sites-available/default
 
 
 
