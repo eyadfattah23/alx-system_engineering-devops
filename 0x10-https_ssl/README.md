@@ -21,6 +21,10 @@ https://stackoverflow.com/questions/19075671/how-do-i-use-shell-variables-in-an-
 
 https://phoenixnap.com/kb/linux-dig-command-examples
 
+https://tldp.org/LDP/abs/html/complexfunct.html
+
+https://www.youtube.com/watch?v=H0bkLsUe3no
+
 **NF is a predefined variable whose value is the number of fields in the current record.**
 
 https://stackoverflow.com/questions/11534173/how-to-use-awk-variables-in-regular-expressions
