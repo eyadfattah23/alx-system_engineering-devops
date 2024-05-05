@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# script that will display information about subdomains in ubuntu 16.04
+# script that will display information about subdomains in ubuntu 22.04
 
 
 function func () {

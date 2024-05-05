@@ -1,27 +1,24 @@
 #!/usr/bin/env bash
-# script that will display information about subdomains.
+# script that will display information about urls in ubuntu 16.04
 
+func ()
+{
+	if [ $# -eq 2 ]
+	then
+		DOMAIN=$1
+		SUBDOMAIN=$2
+		dig "$SUBDOMAIN.$DOMAIN" +noall +answer | tail -n 1 | awk -v SUB=$SUBDOMAIN '{ print "The subdomain "SUB" is a "$4" record and points to "$NF}'
+	else
+		DOMAIN=$1
 
-function func () {
-    if [ $# -eq 2 ]; then
-        DOMAIN="$1"
-        SUB_DOMAIN="$2"
-        records=("A" "CNAME" "MX" "TXT" "NS" "SOA")
-        
-        for record_type in "${records[@]}"; do
-            dig +short "$SUB_DOMAIN.$DOMAIN" "$record_type" | awk -v sub_dom="$SUB_DOMAIN" -v record_type="$record_type" '{ print "The subdomain "sub_dom" is a "record_type" record and points to " $0; }'
-        done
-    else
-        DOMAIN="$1"
-        SUB_DOMAINS=("www" "lb-01" "web-01" "web-02")
-        records=("A" "CNAME" "MX" "TXT" "NS" "SOA")
+		dig "www.$DOMAIN" +noall +answer | tail -n 1 | awk '{ print "The subdomain www is a "$4" record and points to "$NF}'
 
-        for sub_dom in "${SUB_DOMAINS[@]}"; do
-            for record_type in "${records[@]}"; do
-                dig +short "$sub_dom.$DOMAIN" "$record_type" | awk -v sub_dom="$sub_dom" -v record_type="$record_type" '{ print "The subdomain "sub_dom" is a "record_type" record and points to " $0; }'
-            done
-        done
-    fi
+		dig "lb-01.$DOMAIN" +noall +answer | tail -n 1 | awk '{ print "The subdomain lb-01 is a "$4" record and points to "$NF}'
+
+		dig "web-01.$DOMAIN" +noall +answer | tail -n 1 | awk '{ print "The subdomain web-01 is a "$4" record and points to "$NF}'
+
+		dig "web-02.$DOMAIN" +noall +answer | tail -n 1 | awk '{ print "The subdomain web-02 is a "$4" record and points to "$NF}'
+	fi
 }
 
 if [ $# -eq 2 ]; then
