@@ -1,7 +1,5 @@
 # HTTPS SSL
 
-## resources:
-
 ### task1:
 
 before writing the script I:
@@ -12,6 +10,8 @@ before writing the script I:
 - Added the subdomain web-02 to my domain, point it to my web-02 IP
 
 [www.edo-gy.tech](http://www.edo-gy.tech)
+
+##### resources:
 
 https://www.youtube.com/watch?v=9YOZmI-zWok
 
@@ -25,7 +25,7 @@ https://tldp.org/LDP/abs/html/complexfunct.html
 
 https://www.youtube.com/watch?v=H0bkLsUe3no
 
-**NF is a predefined variable whose value is the number of fields in the current record.**
+**NF is a predefined variable whose value is the number of fields in the current record. (points at the last field)**
 
 https://stackoverflow.com/questions/11534173/how-to-use-awk-variables-in-regular-expressions
 
@@ -33,4 +33,10 @@ https://unix.stackexchange.com/questions/120788/pass-shell-variable-as-a-pattern
 
 https://tldp.org/LDP/abs/html/complexfunct.html
 
-##
+### task2:
+
+- **The goal**: configure HAproxy to accept encrypted traffic.
+
+##### resources:
+
+- https://gbeminiyi.hashnode.dev/installing-certbot-in-your-haproxy-load-balancer-server
