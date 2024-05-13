@@ -40,3 +40,5 @@ our task is to Configure ufw so that it blocks all incoming traffic, except the 
 - 22 (SSH)
 - 443 (HTTPS SSL)
 - 80 (HTTP)
+
+for task 100-port_forwarding I used this [link](https://serverfault.com/questions/238563/can-i-use-ufw-to-setup-a-port-forward)
