@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# script to Setup a Primary-Replica infrastructure using MySQL 
+
+# comment put bind-address paramete 
+sudo sed -i "s/.*bind-address.*/#bind-address\t= 54.84.44.145\n/" /etc/mysql/mysql.conf.d/mysqld.cnf
+
+# define an identifier that MySQL uses internally to distinguish servers in a replication setup. Every server in a replication environment, including the source and all its replicas, must have their own unique server-id value.
+sudo echo "server-id\t= 1"  >> /etc/mysql/mysql.conf.d/mysqld.cnf
+
+# define the base name and location of MySQL’s binary log file.
+sudo echo "log_bin\t= /var/log/mysql/mysql-bin.log"  >> /etc/mysql/mysql.conf.d/mysqld.cnf
+
+# define the DB to replicate 
+sudo echo "binlog_do_db\t= db"  >> /etc/mysql/mysql.conf.d/mysqld.cnf
