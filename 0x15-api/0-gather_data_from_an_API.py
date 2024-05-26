@@ -28,7 +28,8 @@ if __name__ == "__main__":
                 done_list.append(task.get('title'))
 
     print(
-        f'Employee {user_name} is done with tasks({todos_done}/{todos_total}):')
+        f'Employee \
+{user_name} is done with tasks({todos_done}/{todos_total}):')
 
     for title in done_list:
         print(f'\t {title}')
