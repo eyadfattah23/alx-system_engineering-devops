@@ -4,30 +4,22 @@ for a given employee ID,
 to return information about his/her todo list progress.
 and export to a csv file USER_ID.csv'''
 
-import csv
 import requests
 from sys import argv
+import csv
 
 if __name__ == "__main__":
-    url = 'https://jsonplaceholder.typicode.com/'
+    user_id = int(argv[1])
+    user = requests.get(
+        'https://jsonplaceholder.typicode.com/users/{}'.format(user_id)).json()
 
-    userId = int(argv[1])
-    user = requests.get(url + f"users/{userId}").json()
+    todos = requests.get(
+        'https://jsonplaceholder.typicode.com/todos/').json()
 
-    user_name = user.get('username')
-
-    file_name = f"{userId}.csv"
-    total_tasks = 0
-    done_tasks = 0
-
-    dtasks_titles = []
-    tasks = requests.get(url + "todos/").json()
-
-    with open(file_name, 'w', newline='') as file:
-        writer = csv.writer(file, quoting=csv.QUOTE_NONNUMERIC)
-        for task in tasks:
-            if task.get('userId') == userId:
-                # Form:"USER_ID","USERNAME","TASK_COMPLETED_STATUS","TASK_TITLE"
-                writer.writerow([f"{userId}", f"{user_name}",
-                                 f"{str(task.get('completed'))}",
-                                 f"{task.get('title')}"])
+    userName = user.get('username')
+    with open(f'{user_id}.csv', 'w', newline="") as file:
+        writer = csv.writer(file, quoting=csv.QUOTE_ALL)
+        for task in todos:
+            if task.get('userId') == user_id:
+                writer.writerow([str(user_id), userName, str(
+                    task.get('completed')), task.get('title')])
