@@ -4,9 +4,9 @@ for a given employee ID,
 to return information about his/her todo list progress.
 and export to a csv file USER_ID.csv'''
 
+import csv
 import requests
 from sys import argv
-import csv
 
 if __name__ == "__main__":
     user_id = int(argv[1])
