@@ -4,7 +4,7 @@ sudo apt update;
 sudo apt install -y nginx
 
 # querying Nginx at its root '/' return a page that contains Hello World!
-sudo echo 'Hello World!' > /var/www/html/index.html
+echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
 
 #restart Nginx
-service nginx restart
+sudo service nginx restart
