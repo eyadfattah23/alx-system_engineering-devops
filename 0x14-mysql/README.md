@@ -68,7 +68,7 @@ mysql-server:
 ### new mysql commands used in web02
 
 CHANGE MASTER TO
-MASTER_HOST='54.84.44.145',
+MASTER_HOST='52.91.152.150',
 MASTER_USER='replica_user',
 MASTER_PASSWORD='password',
 MASTER_LOG_FILE='mysql-bin.000001',
