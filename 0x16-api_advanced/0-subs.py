@@ -20,7 +20,7 @@ def number_of_subscribers(subreddit):
         return 0
     try:
         r = requests.get(URL, auth=('L6IfrPbBUX5qkFAj4MqLdg',
-                                    'TwZviLWscqEJgWQ0PRYfmgOy_T03NA'))
+                                    'TwZviLWscqEJgWQ0PRYfmgOy_T03NA'), headers={'User-Agent': 'my-app by u/Practical_County_194'})
 
         if r.status_code != 200:
             return 0
