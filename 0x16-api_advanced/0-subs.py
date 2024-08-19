@@ -1,24 +1,30 @@
 #!/usr/bin/python3
-'''
- function that queries the Reddit API and returns the number of subscribers
- (not active users, total subscribers)
- for a given subreddit.
- If an invalid subreddit is given, the function should return 0.
-'''
+"""queries the Reddit API and returns the number of subscribers"""
+
 import requests
 
-base_url = 'https://oauth.reddit.com'
+'''url = 'https://www.reddit.com/r/programming/about.json'
+
+r = requests.get(url, auth=('L6IfrPbBUX5qkFAj4MqLdg',
+                 'TwZviLWscqEJgWQ0PRYfmgOy_T03NA'))
+
+print(r.json()['data']['subscribers'])
+'''
 
 
 def number_of_subscribers(subreddit):
-    '''queries the Reddit API and returns the number of subscribers'''
+    '''Returns the number of subscribers in the given subreddit'''
 
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    headers = {
-        'User-Agent': 'myapp/1.0'}
-    response = requests.get(url, headers=headers)
-    if response.status_code != 200:
+    URL = 'https://www.reddit.com/r/' + subreddit + '/about.json'
+    if not URL:
         return 0
-    data = response.json()
-    subscribers = data['data']['subscribers']
-    return subscribers
+    try:
+        r = requests.get(URL, auth=('L6IfrPbBUX5qkFAj4MqLdg',
+                                    'TwZviLWscqEJgWQ0PRYfmgOy_T03NA'))
+
+        if r.status_code != 200:
+            return 0
+
+        return r.json()['data']['subscribers']
+    except Exception as e:
+        return 0
