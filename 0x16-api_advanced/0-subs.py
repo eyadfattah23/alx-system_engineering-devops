@@ -16,11 +16,13 @@ def number_of_subscribers(subreddit):
     '''Returns the number of subscribers in the given subreddit'''
 
     URL = 'https://www.reddit.com/r/' + subreddit + '/about.json'
-    if not URL:
+    if not subreddit:
         return 0
     try:
         r = requests.get(URL, auth=('L6IfrPbBUX5qkFAj4MqLdg',
-                                    'TwZviLWscqEJgWQ0PRYfmgOy_T03NA'), headers={'User-Agent': 'my-app by u/Practical_County_194'})
+                                    'TwZviLWscqEJgWQ0PRYfmgOy_T03NA'),
+                         headers={'User-Agent':
+                                  'my-app by u/Practical_County_194'})
 
         if r.status_code != 200:
             return 0
