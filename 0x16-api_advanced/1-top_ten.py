@@ -24,8 +24,7 @@ def top_ten(subreddit):
     try:
         headers = {
             'User-Agent': 'myapp/1.0'}
-        r = requests.get(URL, auth=('L6IfrPbBUX5qkFAj4MqLdg',
-                                    'TwZviLWscqEJgWQ0PRYfmgOy_T03NA'),
+        r = requests.get(URL,
                          headers=headers)
 
         if r.status_code != 200:
@@ -33,10 +32,10 @@ def top_ten(subreddit):
             return
 
         i = 0
-        for post in r.json()['data']['children']:
+        for post in r.json().get('data').get('children'):
             if i == 10:
                 break
-            print(post['data']['title'])
+            print(post.get('data').get('title'))
             i += 1
     except Exception as e:
         print('error: ', e)
