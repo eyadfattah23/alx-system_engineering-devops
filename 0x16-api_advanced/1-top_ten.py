@@ -15,28 +15,43 @@ print(r.json()['data']['subscribers'])
 
 
 def top_ten(subreddit):
-    '''prints the titles of the first 10 hot post'''
+    '''prints the titles of the first 10 hot posts'''
 
-    URL = 'https://www.reddit.com/r/' + subreddit + '/hot.json'
+    URL = f'https://www.reddit.com/r/{subreddit}/hot.json'
     if not subreddit:
         print(None)
         return
+
+    headers = {
+        'User-Agent':
+        'api_advanced_eyad22 by Practical_County_194 (personal use script)'
+    }
+
     try:
-        headers = {
-            'User-Agent': 'myapp/1.0'}
-        r = requests.get(URL,
-                         headers=headers)
+        r = requests.get(URL, headers=headers, timeout=10)
 
         if r.status_code != 200:
+            print(f"Error: Received status code {r.status_code}")
             print(None)
             return
 
-        i = 0
-        for post in r.json().get('data').get('children'):
-            if i == 10:
-                break
-            print(post.get('data').get('title'))
-            i += 1
-    except Exception as e:
-        print('error: ', e)
+        try:
+            data = r.json()
+        except ValueError:
+            # Print the actual response for debugging if JSON decoding fails
+            print(f"Error: Unable to parse JSON. Response content: {r.text}")
+            print(None)
+            return
+
+        # Extract and print titles of the first 10 hot posts
+        posts = data.get('data', {}).get('children', [])
+        if not posts:
+            print(None)
+            return
+
+        for i, post in enumerate(posts[:10]):
+            print(post.get('data', {}).get('title'))
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error: {e}")
         print(None)
