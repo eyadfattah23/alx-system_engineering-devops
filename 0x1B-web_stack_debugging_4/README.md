@@ -57,4 +57,21 @@ ULIMIT="-n 2048"
 
 ```
 
-**and voila!**--> it works
+## **and voila!**--> it works
+
+---
+
+## advanced task:
+
+1. ran ulimit -n on the user and on root and found out the o/p is 4 in the user screen
+
+2. TO make sure I tan `ulimit -Sn` and `ulimit -Hn` and the o/p was 4 and 5 respectively
+
+3. vimed into `/etc/security/limits.conf ` and edited the parameters:
+
+```vim
+holberton hard nofile 4 ---> holberton hard nofile 1024
+holberton soft nofile 5 ---> holberton soft nofile 1024
+```
+
+## **and voila!**--> it works
