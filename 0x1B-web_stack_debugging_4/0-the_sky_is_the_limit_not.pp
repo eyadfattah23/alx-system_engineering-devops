@@ -1,14 +1,15 @@
-# puppet script that solves the problem of many requests
+# Puppet manifest to update ULIMIT in /etc/default/nginx and restart nginx
 
-
-file_line { 'update_ulimit':
-  path  => '/etc/default/nginx',
-  match => '^ULIMIT=',
-  line  => 'ULIMIT="-n 2048"',
+# Ensure the ULIMIT line is updated to "-n 2048"
+exec { 'update_ulimit':
+  command => '/bin/sed -i \'s/^ULIMIT="-n 15"/ULIMIT="-n 2048"/\' /etc/default/nginx',
+  unless  => '/bin/grep -q \'^ULIMIT="-n 2048"\' /etc/default/nginx',
+  notify  => Service['nginx'],
 }
 
-
-exec {'restart':
-  provider => shell,
-  command  => 'sudo service nginx restart',
+# Manage the nginx service
+service { 'nginx':
+  ensure    => 'running',
+  enable    => true,
+  subscribe => Exec['update_ulimit'],
 }
