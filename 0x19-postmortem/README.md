@@ -1,5 +1,9 @@
 # Postmortem
 
+<div align="center">
+<img src="https://media.giphy.com/media/3ohc0Tl6T6UxpboOha/giphy.gif" align="center" style="width: 100%" />
+</div>
+
 ## Issue Summary:
 
 - **Duration**: 10 hrs, Start time: Aug 22, 2024 1:00 PM (GMT+03:00),- End time: Aug 22, 2024 11:00 PM (GMT+03:00)
@@ -92,7 +96,3 @@ ULIMIT="-n 2048"
 - More monitoring for web server performance.
 
 - After adding a new feature or noticing change in the traffic on the website do a benchmarking test with a number of requests more than the expected number of requests by the users so that we handle traffic spikes.
-
-<iframe src="https://giphy.com/embed/3ohc0Tl6T6UxpboOha" width="480" height="480" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/trainline-train-spy-3ohc0Tl6T6UxpboOha">via GIPHY</a></p>
-
-<div style="width:100%;height:0;padding-bottom:100%;position:relative;"><iframe src="https://giphy.com/embed/3ohc0Tl6T6UxpboOha" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/trainline-train-spy-3ohc0Tl6T6UxpboOha">via GIPHY</a></p>
